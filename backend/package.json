@@ -1,0 +1,17 @@
+{
+  "name": "school-erp-reporting-backend",
+  "version": "1.0.0",
+  "description": "Cross-module reporting API joining finance, attendance, and academics for a School ERP",
+  "main": "server.js",
+  "scripts": {
+    "seed": "node db/seed.js",
+    "start": "node server.js",
+    "dev": "node server.js"
+  },
+  "dependencies": {
+    "better-sqlite3": "^11.3.0",
+    "cors": "^2.8.5",
+    "express": "^4.19.2"
+  },
+  "private": true
+}
