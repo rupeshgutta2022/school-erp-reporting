@@ -1,0 +1,372 @@
+/* ============================================================
+   Design tokens
+   Palette: cool paper + deep ledger-ink navy + brass accent.
+   Risk colours (red/amber/green) carry real semantic meaning
+   and are the one place saturated colour is allowed to speak.
+   ============================================================ */
+:root {
+  --paper: #EEF1EC;
+  --surface: #FFFFFF;
+  --ink: #1C3144;
+  --ink-soft: #566873;
+  --ink-faint: #8B9AA1;
+  --hairline: #D7DCD2;
+  --hairline-strong: #BCC4B8;
+  --brass: #8A6D3B;
+  --brass-soft: #EFE6D3;
+
+  --risk-high: #B3452D;
+  --risk-high-bg: #F6E3DD;
+  --risk-medium: #A8791F;
+  --risk-medium-bg: #F3E7CE;
+  --risk-low: #3F7A5C;
+  --risk-low-bg: #E1EEE5;
+
+  --font-display: 'Newsreader', Georgia, serif;
+  --font-body: 'IBM Plex Sans', -apple-system, sans-serif;
+
+  --radius-sm: 3px;
+  --radius-md: 5px;
+}
+
+* { box-sizing: border-box; }
+
+html { -webkit-text-size-adjust: 100%; }
+
+body {
+  margin: 0;
+  background: var(--paper);
+  color: var(--ink);
+  font-family: var(--font-body);
+  font-size: 15px;
+  line-height: 1.5;
+  -webkit-font-smoothing: antialiased;
+}
+
+*:focus-visible {
+  outline: 2px solid var(--brass);
+  outline-offset: 2px;
+}
+
+/* ---------------- Masthead ---------------- */
+
+.masthead {
+  background: var(--surface);
+  border-bottom: 1px solid var(--hairline-strong);
+}
+
+.masthead-inner {
+  max-width: 1240px;
+  margin: 0 auto;
+  padding: 28px 32px 22px;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  align-items: flex-end;
+  gap: 24px;
+}
+
+.eyebrow-mark {
+  margin: 0 0 4px;
+  font-size: 13px;
+  color: var(--brass);
+  font-family: var(--font-display);
+  font-style: italic;
+}
+
+.masthead-title h1 {
+  margin: 0;
+  font-family: var(--font-display);
+  font-weight: 500;
+  font-size: 32px;
+  letter-spacing: -0.01em;
+  color: var(--ink);
+}
+
+.masthead-sub {
+  margin: 6px 0 0;
+  color: var(--ink-soft);
+  font-size: 14px;
+  max-width: 46ch;
+}
+
+.masthead-filters {
+  display: flex;
+  gap: 20px;
+  flex-wrap: wrap;
+}
+
+.field {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+  font-size: 12.5px;
+  color: var(--ink-soft);
+}
+
+.field select {
+  font-family: var(--font-body);
+  font-size: 14px;
+  color: var(--ink);
+  background: var(--surface);
+  border: 1px solid var(--hairline-strong);
+  border-radius: var(--radius-sm);
+  padding: 7px 10px;
+  min-width: 130px;
+}
+
+/* ---------------- Figures strip ---------------- */
+
+.figures {
+  max-width: 1240px;
+  margin: 0 auto;
+  padding: 22px 32px 0;
+  display: flex;
+  flex-wrap: wrap;
+}
+
+.figure {
+  flex: 1 1 180px;
+  padding: 0 24px;
+  border-left: 1px solid var(--hairline);
+}
+.figure:first-child { border-left: none; padding-left: 0; }
+
+.figure-value {
+  font-family: var(--font-display);
+  font-size: 30px;
+  font-weight: 500;
+  color: var(--ink);
+  line-height: 1.1;
+}
+
+.figure-label {
+  font-size: 12.5px;
+  color: var(--ink-soft);
+  margin-top: 4px;
+}
+
+/* ---------------- Layout ---------------- */
+
+main {
+  max-width: 1240px;
+  margin: 0 auto;
+  padding: 28px 32px 60px;
+}
+
+.report-body {
+  display: grid;
+  grid-template-columns: minmax(0, 1.7fr) minmax(0, 1fr);
+  gap: 20px;
+  margin-top: 8px;
+}
+
+.report-body--secondary {
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  margin-top: 20px;
+}
+
+.panel {
+  background: var(--surface);
+  border: 1px solid var(--hairline);
+  border-radius: var(--radius-md);
+}
+
+.panel-head {
+  padding: 18px 20px 12px;
+  border-bottom: 1px solid var(--hairline);
+}
+
+.panel-head h2 {
+  margin: 0;
+  font-family: var(--font-display);
+  font-weight: 500;
+  font-size: 18px;
+}
+
+.panel-note {
+  margin: 4px 0 0;
+  font-size: 12.5px;
+  color: var(--ink-soft);
+  min-height: 15px;
+}
+
+/* ---------------- Table ---------------- */
+
+.table-scroll { overflow-x: auto; }
+
+table { width: 100%; border-collapse: collapse; font-size: 13.5px; }
+
+thead th {
+  text-align: left;
+  font-weight: 500;
+  color: var(--ink-soft);
+  font-size: 12px;
+  padding: 10px 18px;
+  border-bottom: 1px solid var(--hairline);
+  white-space: nowrap;
+}
+thead th.num { text-align: right; }
+
+tbody td {
+  padding: 11px 18px;
+  border-bottom: 1px solid var(--hairline);
+  white-space: nowrap;
+}
+tbody td.num {
+  text-align: right;
+  font-variant-numeric: tabular-nums;
+}
+
+tbody tr {
+  cursor: pointer;
+  transition: background-color 0.12s ease;
+}
+tbody tr:hover { background: var(--brass-soft); }
+tbody tr:last-child td { border-bottom: none; }
+
+.student-name { font-weight: 500; }
+.student-roll { color: var(--ink-faint); font-size: 12px; margin-left: 6px; }
+
+.badge {
+  display: inline-block;
+  padding: 3px 10px;
+  border-radius: 999px;
+  font-size: 12px;
+  font-weight: 500;
+}
+.badge--high { background: var(--risk-high-bg); color: var(--risk-high); }
+.badge--medium { background: var(--risk-medium-bg); color: var(--risk-medium); }
+.badge--low { background: var(--risk-low-bg); color: var(--risk-low); }
+
+.compound-mark {
+  color: var(--risk-high);
+  margin-left: 5px;
+  font-size: 11px;
+}
+
+/* ---------------- Charts ---------------- */
+
+.chart-wrap { padding: 16px 18px 20px; height: 240px; position: relative; }
+.chart-wrap--tall { height: 420px; }
+
+.side-panel { display: flex; flex-direction: column; }
+.side-panel .chart-wrap { flex: 1; }
+
+/* ---------------- Fee comparison (no chart, small ledger table) ---------------- */
+
+.fee-compare { padding: 14px 20px 20px; }
+
+.fee-compare-row {
+  display: flex;
+  justify-content: space-between;
+  align-items: baseline;
+  padding: 10px 0;
+  border-bottom: 1px solid var(--hairline);
+  font-size: 13.5px;
+}
+.fee-compare-row:last-child { border-bottom: none; }
+
+.fee-compare-label { color: var(--ink); }
+.fee-compare-sub { color: var(--ink-faint); font-size: 11.5px; display: block; margin-top: 2px; }
+.fee-compare-metrics { text-align: right; font-variant-numeric: tabular-nums; color: var(--ink-soft); }
+.fee-compare-metrics b { color: var(--ink); font-weight: 500; }
+
+/* ---------------- Modal (student detail) ---------------- */
+
+.modal-backdrop {
+  display: none;
+  position: fixed;
+  inset: 0;
+  background: rgba(28, 49, 68, 0.45);
+  z-index: 50;
+  align-items: flex-start;
+  justify-content: center;
+  padding: 6vh 16px;
+  overflow-y: auto;
+}
+.modal-backdrop.open { display: flex; }
+
+.modal {
+  background: var(--surface);
+  border-radius: var(--radius-md);
+  max-width: 640px;
+  width: 100%;
+  position: relative;
+  padding: 30px 32px 28px;
+}
+
+.modal-close {
+  position: absolute;
+  top: 16px; right: 18px;
+  background: none;
+  border: none;
+  font-size: 22px;
+  color: var(--ink-soft);
+  cursor: pointer;
+  line-height: 1;
+  padding: 4px;
+}
+.modal-close:hover { color: var(--ink); }
+
+.modal h2 {
+  font-family: var(--font-display);
+  font-weight: 500;
+  margin: 0 0 2px;
+  font-size: 23px;
+}
+.modal .modal-sub { color: var(--ink-soft); font-size: 13px; margin: 0 0 18px; }
+
+.modal-stats { display: grid; grid-template-columns: repeat(3, 1fr); gap: 14px; margin-bottom: 20px; }
+.modal-stat { border: 1px solid var(--hairline); border-radius: var(--radius-sm); padding: 12px 14px; }
+.modal-stat-value { font-family: var(--font-display); font-size: 21px; }
+.modal-stat-label { font-size: 11.5px; color: var(--ink-soft); margin-top: 3px; }
+
+.modal-section-title {
+  font-size: 12.5px;
+  color: var(--ink-soft);
+  margin: 20px 0 8px;
+  padding-top: 14px;
+  border-top: 1px solid var(--hairline);
+}
+.modal-section-title:first-of-type { border-top: none; padding-top: 0; }
+
+.mini-table { width: 100%; border-collapse: collapse; font-size: 13px; }
+.mini-table td { padding: 6px 0; border-bottom: 1px solid var(--hairline); }
+.mini-table tr:last-child td { border-bottom: none; }
+.mini-table td.num { text-align: right; font-variant-numeric: tabular-nums; color: var(--ink-soft); }
+
+.flag-list { display: flex; gap: 6px; flex-wrap: wrap; margin-top: 6px; }
+.flag-chip {
+  font-size: 11.5px;
+  padding: 3px 9px;
+  border-radius: 999px;
+  background: var(--risk-high-bg);
+  color: var(--risk-high);
+}
+
+/* ---------------- Footer ---------------- */
+
+.foot-note {
+  text-align: center;
+  color: var(--ink-faint);
+  font-size: 12px;
+  padding: 0 20px 40px;
+}
+
+/* ---------------- Responsive ---------------- */
+
+@media (max-width: 900px) {
+  .report-body,
+  .report-body--secondary {
+    grid-template-columns: 1fr;
+  }
+  .masthead-inner { padding: 22px 18px 18px; }
+  main { padding: 22px 16px 50px; }
+  .figures { padding: 18px 16px 0; }
+  .figure { flex: 1 1 45%; padding: 0 14px; margin-bottom: 12px; }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  * { transition: none !important; }
+}
