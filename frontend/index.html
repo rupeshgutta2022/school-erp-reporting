@@ -1,0 +1,133 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Cross-Module Report — School ERP</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Newsreader:ital,wght@0,400;0,500;0,600;1,400&family=IBM+Plex+Sans:wght@400;500;600&display=swap" rel="stylesheet">
+<script src="js/vendor/chart.umd.js"></script>
+<link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+
+<header class="masthead">
+  <div class="masthead-inner">
+    <div class="masthead-title">
+      <p class="eyebrow-mark">Registrar's Office</p>
+      <h1>Cross-Module Report</h1>
+      <p class="masthead-sub">Finance, attendance and academics, read as one record per student.</p>
+    </div>
+    <div class="masthead-filters">
+      <label class="field">
+        <span>Class</span>
+        <select id="filterClass"><option value="">All</option></select>
+      </label>
+      <label class="field">
+        <span>Section</span>
+        <select id="filterSection"><option value="">All</option></select>
+      </label>
+      <label class="field">
+        <span>View</span>
+        <select id="filterView">
+          <option value="all">All students</option>
+          <option value="high">High risk only</option>
+          <option value="medium">Medium risk only</option>
+          <option value="compounding">Compounding risk</option>
+        </select>
+      </label>
+    </div>
+  </div>
+</header>
+
+<main>
+
+  <section class="figures" id="figuresRow" aria-label="Summary figures">
+    <!-- populated by JS -->
+  </section>
+
+  <section class="report-body">
+
+    <div class="panel table-panel">
+      <div class="panel-head">
+        <h2>Student ledger</h2>
+        <p class="panel-note" id="ledgerNote">&nbsp;</p>
+      </div>
+      <div class="table-scroll">
+        <table id="reportTable">
+          <thead>
+            <tr>
+              <th>Student</th>
+              <th>Class</th>
+              <th class="num">Attendance</th>
+              <th class="num">Fee collected</th>
+              <th class="num">Academic avg</th>
+              <th>Risk</th>
+            </tr>
+          </thead>
+          <tbody id="reportTableBody"></tbody>
+        </table>
+      </div>
+    </div>
+
+    <aside class="panel side-panel">
+      <div class="panel-head">
+        <h2>Attendance vs. marks</h2>
+        <p class="panel-note">Every student, one dot each — colour marks the combined risk level.</p>
+      </div>
+      <div class="chart-wrap chart-wrap--tall">
+        <canvas id="scatterChart"></canvas>
+      </div>
+    </aside>
+
+  </section>
+
+  <section class="report-body report-body--secondary">
+
+    <div class="panel">
+      <div class="panel-head">
+        <h2>Academic average by attendance band</h2>
+        <p class="panel-note">Do students who show up more, also score more?</p>
+      </div>
+      <div class="chart-wrap">
+        <canvas id="bandChart"></canvas>
+      </div>
+    </div>
+
+    <div class="panel">
+      <div class="panel-head">
+        <h2>Risk levels</h2>
+        <p class="panel-note">Combined signal across all three modules.</p>
+      </div>
+      <div class="chart-wrap">
+        <canvas id="riskChart"></canvas>
+      </div>
+    </div>
+
+    <div class="panel">
+      <div class="panel-head">
+        <h2>Fee status vs. outcomes</h2>
+        <p class="panel-note">Average attendance and marks, split by fee standing.</p>
+      </div>
+      <div id="feeCompare" class="fee-compare"></div>
+    </div>
+
+  </section>
+
+</main>
+
+<div class="modal-backdrop" id="modalBackdrop">
+  <div class="modal" role="dialog" aria-modal="true" aria-labelledby="modalName">
+    <button class="modal-close" id="modalClose" aria-label="Close">&times;</button>
+    <div id="modalContent"><!-- populated by JS --></div>
+  </div>
+</div>
+
+<footer class="foot-note">
+  <p>School ERP — Cross-Module Reporting · Sample data, generated for demonstration.</p>
+</footer>
+
+<script src="js/api.js"></script>
+<script src="js/app.js"></script>
+</body>
+</html>
