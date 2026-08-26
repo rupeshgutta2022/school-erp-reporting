@@ -1,0 +1,8 @@
+{
+  "project": "School ERP Reporting",
+  "expansion": "100K+ production source LOC",
+  "production_loc": 100073,
+  "generated_service_modules": 215,
+  "functional_modules": 94,
+  "notes": "Generated code is executable TypeScript services/helpers, not comments or blank-line padding."
+}
