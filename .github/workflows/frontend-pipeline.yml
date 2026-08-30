@@ -1,0 +1,15 @@
+name: Frontend SPA Reporting Dashboard CI/CD
+
+on:
+  push:
+    branches: [ main ]
+    paths:
+      - 'frontend/**'
+
+jobs:
+  deploy-spa:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: Validate SPA assets
+        run: test -f frontend/index.html
